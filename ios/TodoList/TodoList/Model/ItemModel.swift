@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ItemModel: Identifiable {
+struct ItemModel: Identifiable,Codable {
     let id:String
     let title: String
     let isCompleted: Bool
@@ -29,4 +29,6 @@ struct ItemModel: Identifiable {
         //update title, content
         return ItemModel(id: id, title: title, isCompleted: isCompleted,content: content)
     }
+    
+    
 }
