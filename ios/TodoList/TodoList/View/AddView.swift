@@ -19,17 +19,19 @@ struct AddView: View {
     
     
     var body: some View {
+        
         VStack (spacing:15) {
             TextField("what to do?", text: $textFieldValue)
+                .frame(maxWidth:.infinity)
                 .frame(height:55)
                 .padding(.horizontal,8)
                 .background(Color.gray.opacity(0.3),in:RoundedRectangle(cornerRadius: 10))
-                
             TextField("write something...",text:$textContentFieldValue)
-                .frame(width: .infinity, height: 200, alignment: .topLeading)
-                .padding()
+                .frame(maxWidth:.infinity)
+                .frame(height: 200, alignment: .topLeading)
+                .padding(8)
                 .background(Color.gray.opacity(0.3),in:RoundedRectangle(cornerRadius: 10))
-                
+            
             Button {
                 saveButtonPressed()
             } label: {

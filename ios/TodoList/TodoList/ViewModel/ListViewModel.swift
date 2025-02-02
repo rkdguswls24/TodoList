@@ -8,11 +8,26 @@
 import Foundation
 
 @Observable class ListViewModel {
-    var items:[ItemModel]
+    var items:[ItemModel] = []{
+        didSet {
+            saveItems()
+        }
+    }
+    var manager = LocalFileManager.shared
+    
     
     init() {
-        items = [
-        ]
+        getItems()
+    }
+    
+    func getItems(){
+        items = LocalFileManager.shared.loadData()
+        
+    }
+    
+    func saveItems() {
+        LocalFileManager.shared.saveData(items: items)
+        
     }
     
     func deleteItem (indexSet: IndexSet) {
