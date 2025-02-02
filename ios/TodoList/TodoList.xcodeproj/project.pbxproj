@@ -15,6 +15,7 @@
 		2CD5D9232D4F6AEA0024BDC2 /* ListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD5D9222D4F6AEA0024BDC2 /* ListRowView.swift */; };
 		2CD5D9252D4F711F0024BDC2 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD5D9242D4F711F0024BDC2 /* ListViewModel.swift */; };
 		2CD5D9272D4F72DD0024BDC2 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD5D9262D4F72DD0024BDC2 /* AddView.swift */; };
+		2CD5D9CD2D4F90120024BDC2 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD5D9CC2D4F90120024BDC2 /* DetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		2CD5D9222D4F6AEA0024BDC2 /* ListRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListRowView.swift; sourceTree = "<group>"; };
 		2CD5D9242D4F711F0024BDC2 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		2CD5D9262D4F72DD0024BDC2 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
+		2CD5D9CC2D4F90120024BDC2 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				2CD5D91E2D4F66110024BDC2 /* ListView.swift */,
 				2CD5D9222D4F6AEA0024BDC2 /* ListRowView.swift */,
 				2CD5D9262D4F72DD0024BDC2 /* AddView.swift */,
+				2CD5D9CC2D4F90120024BDC2 /* DetailView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -179,6 +182,7 @@
 				2CD5D9272D4F72DD0024BDC2 /* AddView.swift in Sources */,
 				2CD5D91A2D4F65EA0024BDC2 /* TodoListApp.swift in Sources */,
 				2CD5D9252D4F711F0024BDC2 /* ListViewModel.swift in Sources */,
+				2CD5D9CD2D4F90120024BDC2 /* DetailView.swift in Sources */,
 				2CD5D9232D4F6AEA0024BDC2 /* ListRowView.swift in Sources */,
 				2CD5D9212D4F66B10024BDC2 /* ItemModel.swift in Sources */,
 				2CD5D91F2D4F66110024BDC2 /* ListView.swift in Sources */,

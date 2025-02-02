@@ -13,12 +13,17 @@ struct AddView: View {
     @Environment(ListViewModel.self) var listViewModel
     
     @State private var textFieldValue: String = ""
-    
+    @State private var textContentFieldValue : String = ""
     var body: some View {
         VStack (spacing:15) {
             TextField("what to do?", text: $textFieldValue)
                 .frame(height:55)
                 .padding(.horizontal,8)
+                .background(Color.gray.opacity(0.3),in:RoundedRectangle(cornerRadius: 10))
+                
+            TextField("write something...",text:$textContentFieldValue)
+                .frame(width: .infinity, height: 200, alignment: .topLeading)
+                .padding()
                 .background(Color.gray.opacity(0.3),in:RoundedRectangle(cornerRadius: 10))
                 
             Button {
@@ -48,7 +53,12 @@ struct AddView: View {
 extension AddView {
     private func saveButtonPressed() {
         guard !textFieldValue.isEmpty else { return }
-        listViewModel.addItem(title: textFieldValue)
+        guard !textContentFieldValue.isEmpty else {
+            listViewModel.addItem(title: textFieldValue)
+            dismiss()
+            return
+        }
+        listViewModel.addItem(title: textFieldValue, content: textContentFieldValue)
         dismiss()
     }
 }

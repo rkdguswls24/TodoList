@@ -31,4 +31,22 @@ import Foundation
         let item = ItemModel(title: title, isCompleted: false)
         items.append(item)
     }
+    func addItem(title:String,content:String){
+        let item = ItemModel(title: title, isCompleted: false,content:content)
+        items.append(item)
+    }
+    func updateItem(item:ItemModel) {
+        if let index = items.firstIndex(where: { $0.id == item.id}) {
+            items[index] = item.toggleCompletion()
+        }
+        
+    }
+    //update title,content in detail view
+    func updateItem(item:ItemModel,title:String,content:String) {
+        if let index = items.firstIndex(where: { $0.id == item.id}) {
+            items[index] = item.updateCompletion(title: title,content: content)
+        }
+        
+    }
+    
 }
