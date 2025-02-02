@@ -13,14 +13,25 @@ struct AddView: View {
     @Environment(ListViewModel.self) var listViewModel
     
     @State private var textFieldValue: String = ""
+    @State private var textContentFieldValue : String = ""
+    @State private var showAlert: Bool = false
+    @State private var alertTitle: String = ""
+    
     
     var body: some View {
+        
         VStack (spacing:15) {
             TextField("what to do?", text: $textFieldValue)
+                .frame(maxWidth:.infinity)
                 .frame(height:55)
                 .padding(.horizontal,8)
                 .background(Color.gray.opacity(0.3),in:RoundedRectangle(cornerRadius: 10))
-                
+            TextField("write something...",text:$textContentFieldValue)
+                .frame(maxWidth:.infinity)
+                .frame(height: 200, alignment: .topLeading)
+                .padding(8)
+                .background(Color.gray.opacity(0.3),in:RoundedRectangle(cornerRadius: 10))
+            
             Button {
                 saveButtonPressed()
             } label: {
@@ -36,6 +47,9 @@ struct AddView: View {
             
         }
         .padding()
+        .alert(alertTitle, isPresented: $showAlert) {
+            
+        }
     }
 }
 
@@ -47,8 +61,25 @@ struct AddView: View {
 
 extension AddView {
     private func saveButtonPressed() {
-        guard !textFieldValue.isEmpty else { return }
-        listViewModel.addItem(title: textFieldValue)
-        dismiss()
+        if formValidate() {
+            guard !textContentFieldValue.isEmpty else {
+                listViewModel.addItem(title: textFieldValue)
+                dismiss()
+                return
+            }
+            listViewModel.addItem(title: textFieldValue, content: textContentFieldValue)
+            dismiss()
+            
+        }
     }
+    
+    private func formValidate() -> Bool {
+        if textFieldValue.count < 4 {
+            alertTitle = "Error! you need to write a title at least 4 characters"
+            showAlert.toggle()
+            return false
+        }
+        return true
+    }
+    
 }

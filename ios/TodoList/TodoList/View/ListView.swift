@@ -13,15 +13,12 @@ struct ListView: View {
     
     var body: some View {
         ZStack {
-            List {
-                
-                ForEach(listViewModel.items) { item in
-                    ListRowView(item: item)
-                }
-                .onDelete(perform: listViewModel.deleteItem)
-                .onMove(perform: listViewModel.moveItem)
+            if listViewModel.items.isEmpty {
+                NoItemView()
+                    .transition(AnyTransition.opacity.animation(.easeIn))
+            }else {
+                listSection
             }
-            .listStyle(.plain)
         }
         .navigationTitle("TodoList 💡")
         .toolbar {
@@ -49,4 +46,21 @@ struct ListView: View {
             
     }
     .environment(ListViewModel())
+}
+
+extension ListView {
+    private var listSection: some View {
+        List {
+            
+            ForEach(listViewModel.items) { item in
+                ListRowView(item: item)
+            }
+            .onDelete(perform: listViewModel.deleteItem)
+            .onMove(perform: listViewModel.moveItem)
+            
+        }
+        .listStyle(.plain)
+    }
+    
+    
 }

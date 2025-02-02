@@ -8,15 +8,26 @@
 import Foundation
 
 @Observable class ListViewModel {
-    var items:[ItemModel]
+    var items:[ItemModel] = []{
+        didSet {
+            saveItems()
+        }
+    }
+    var manager = LocalFileManager.shared
+    
     
     init() {
-        items = [
-            ItemModel(title: "hello1", isCompleted: true),
-            ItemModel(title: "hello2", isCompleted: false),
-            ItemModel(title: "hello3", isCompleted: true),
-            ItemModel(title: "hello4", isCompleted: false),
-        ]
+        getItems()
+    }
+    
+    func getItems(){
+        items = LocalFileManager.shared.loadData()
+        
+    }
+    
+    func saveItems() {
+        LocalFileManager.shared.saveData(items: items)
+        
     }
     
     func deleteItem (indexSet: IndexSet) {
@@ -31,4 +42,22 @@ import Foundation
         let item = ItemModel(title: title, isCompleted: false)
         items.append(item)
     }
+    func addItem(title:String,content:String){
+        let item = ItemModel(title: title, isCompleted: false,content:content)
+        items.append(item)
+    }
+    func updateItem(item:ItemModel) {
+        if let index = items.firstIndex(where: { $0.id == item.id}) {
+            items[index] = item.toggleCompletion()
+        }
+        
+    }
+    //update title,content in detail view
+    func updateItem(item:ItemModel,title:String,content:String) {
+        if let index = items.firstIndex(where: { $0.id == item.id}) {
+            items[index] = item.updateCompletion(title: title,content: content)
+        }
+        
+    }
+    
 }
