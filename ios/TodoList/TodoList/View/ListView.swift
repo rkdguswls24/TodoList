@@ -8,11 +8,45 @@
 import SwiftUI
 
 struct ListView: View {
+    
+    @Environment(ListViewModel.self) var listViewModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            List {
+                
+                ForEach(listViewModel.items) { item in
+                    ListRowView(item: item)
+                }
+                .onDelete(perform: listViewModel.deleteItem)
+                .onMove(perform: listViewModel.moveItem)
+            }
+            .listStyle(.plain)
+        }
+        .navigationTitle("TodoList 💡")
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                EditButton()
+            }
+            ToolbarItem(placement: .topBarTrailing) {
+                NavigationLink {
+                    AddView()
+                } label: {
+                    Image(systemName:"text.badge.plus")
+                }
+            }
+        }
+        
     }
+    
+    
+    
 }
 
 #Preview {
-    ListView()
+    NavigationStack {
+        ListView()
+            
+    }
+    .environment(ListViewModel())
 }
