@@ -12,10 +12,6 @@ import Foundation
     
     init() {
         items = [
-            ItemModel(title: "hello1", isCompleted: true),
-            ItemModel(title: "hello2", isCompleted: false),
-            ItemModel(title: "hello3", isCompleted: true),
-            ItemModel(title: "hello4", isCompleted: false),
         ]
     }
     

@@ -13,7 +13,12 @@ struct ListView: View {
     
     var body: some View {
         ZStack {
-            listSection
+            if listViewModel.items.isEmpty {
+                NoItemView()
+                    .transition(AnyTransition.opacity.animation(.easeIn))
+            }else {
+                listSection
+            }
         }
         .navigationTitle("TodoList 💡")
         .toolbar {
