@@ -14,6 +14,10 @@ struct AddView: View {
     
     @State private var textFieldValue: String = ""
     @State private var textContentFieldValue : String = ""
+    @State private var showAlert: Bool = false
+    @State private var alertTitle: String = ""
+    
+    
     var body: some View {
         VStack (spacing:15) {
             TextField("what to do?", text: $textFieldValue)
@@ -41,6 +45,9 @@ struct AddView: View {
             
         }
         .padding()
+        .alert(alertTitle, isPresented: $showAlert) {
+            
+        }
     }
 }
 
@@ -52,13 +59,25 @@ struct AddView: View {
 
 extension AddView {
     private func saveButtonPressed() {
-        guard !textFieldValue.isEmpty else { return }
-        guard !textContentFieldValue.isEmpty else {
-            listViewModel.addItem(title: textFieldValue)
+        if formValidate() {
+            guard !textContentFieldValue.isEmpty else {
+                listViewModel.addItem(title: textFieldValue)
+                dismiss()
+                return
+            }
+            listViewModel.addItem(title: textFieldValue, content: textContentFieldValue)
             dismiss()
-            return
+            
         }
-        listViewModel.addItem(title: textFieldValue, content: textContentFieldValue)
-        dismiss()
     }
+    
+    private func formValidate() -> Bool {
+        if textFieldValue.count < 4 {
+            alertTitle = "Error! you need to write a title at least 4 characters"
+            showAlert.toggle()
+            return false
+        }
+        return true
+    }
+    
 }
